@@ -1,0 +1,35 @@
+---
+title: "Reading Email Headers to Triage Phishing"
+date: "2026-06-15"
+excerpt: "A practical, field-tested walkthrough of the header fields that actually tell you whether a suspicious email is spoofed — and how to move fast without missing the real attacks."
+tags: ["Detection Engineering", "Phishing", "SOC"]
+---
+
+Most phishing triage starts the same way: a user forwards a "weird" email, and you have a couple of minutes to decide whether it's a nuisance or the start of an incident. The body and the display name lie freely. The headers are where the truth usually hides.
+
+## Start with the authentication results
+
+The single most useful line is `Authentication-Results`. It summarises three checks the receiving server already did for you:
+
+- **SPF** — was the sending IP allowed to send for the envelope domain?
+- **DKIM** — is the message cryptographically signed by the domain it claims?
+- **DMARC** — does the visible `From:` align with SPF/DKIM, per the domain's policy?
+
+A `dmarc=fail` on a message that claims to be from a bank is a strong signal. But the inverse trap matters more: **`dmarc=pass` does not mean safe.** Attackers register look-alike domains and pass authentication for *their own* domain. Authentication tells you the mail is genuinely from `paypa1-secure.com` — it doesn't tell you that domain isn't malicious.
+
+## Walk the Received chain bottom-up
+
+The `Received:` headers stack newest-on-top, so read from the bottom. The earliest hop shows where the message actually originated. Two things to look for:
+
+1. A first hop that doesn't match the claimed sender's infrastructure.
+2. A sudden jump through an unexpected country or a residential/cloud IP range.
+
+## Check alignment, not just presence
+
+The classic spoof passes SPF for a throwaway domain in the `Return-Path` while showing a trusted brand in the `From:`. Compare the envelope sender (`Return-Path`) against the visible `From:`. When they diverge and DMARC is only `p=none`, the message can still land in an inbox looking legitimate.
+
+## Build the muscle memory
+
+When you triage dozens of these, you stop reading headers linearly and start pattern-matching: auth results, then origin hop, then `From`/`Return-Path` alignment, then reply-to. The goal isn't to analyse every email forever — it's to reach a confident verdict in under a minute and escalate the few that deserve it.
+
+> Notes from hands-on SOC work. Verify specifics against your own mail environment and policies before acting on them.

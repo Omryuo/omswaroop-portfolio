@@ -1,0 +1,180 @@
+@import "tailwindcss";
+@source "../**/*.{ts,tsx}";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg: #070708;
+  --color-surface: #0d0d10;
+  --color-surface2: #141419;
+  --color-ink: #f4f4f6;
+  --color-muted: #9a9aa6;
+  --color-dim: #6b6b76;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line2: rgba(255, 255, 255, 0.14);
+  --color-crimson: #ff2342;
+  --color-crimson-bright: #ff5a72;
+  --color-violet: #9b4dff;
+  --color-violet-bright: #b985ff;
+
+  --font-display: var(--font-space-grotesk), "Space Grotesk", sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--color-crimson);
+  color: #fff;
+}
+
+.bg-grid {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 28%, #000 28%, transparent 72%);
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 28%, #000 28%, transparent 72%);
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(3%, -3%, 0); }
+}
+.animate-drift { animation: drift 18s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-drift { animation: none; }
+}
+
+/* ---- ambient animated background (subtle, behind all content) ---- */
+.bg-aurora {
+  position: absolute;
+  inset: 0;
+  animation: hueDrift 22s ease-in-out infinite alternate;
+}
+.bg-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(125px);
+  will-change: transform, opacity;
+}
+.bg-blob-a { width: 46vw; height: 46vw; top: -12vw; right: -8vw; opacity: 0.5; animation: blobA 24s ease-in-out infinite; }
+.bg-blob-b { width: 42vw; height: 42vw; bottom: -14vw; left: -10vw; opacity: 0.45; animation: blobB 28s ease-in-out infinite; }
+.bg-blob-c { width: 38vw; height: 38vw; top: 32%; left: 38%; opacity: 0.26; animation: blobC 32s ease-in-out infinite; }
+
+@keyframes hueDrift {
+  from { filter: hue-rotate(-10deg); }
+  to { filter: hue-rotate(14deg); }
+}
+@keyframes blobA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(6%, 8%) scale(1.12); }
+  66% { transform: translate(-5%, 4%) scale(0.95); }
+}
+@keyframes blobB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-8%, -6%) scale(1.1); }
+  66% { transform: translate(5%, -3%) scale(1.06); }
+}
+@keyframes blobC {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.26; }
+  50% { transform: translate(4%, -8%) scale(1.16); opacity: 0.46; }
+}
+
+/* ---- hero threat-graph scanning ---- */
+.scan-stripes {
+  position: absolute;
+  inset: -30px;
+  background: repeating-linear-gradient(135deg, #1a1620, #1a1620 12px, #141019 12px, #141019 24px);
+  animation: scanShift 5s linear infinite;
+}
+@keyframes scanShift {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-16.97px, -16.97px); }
+}
+.scan-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent, rgba(185, 133, 255, 0.1), transparent);
+  background-size: 100% 45%;
+  background-repeat: no-repeat;
+  animation: scanSweep 4.5s ease-in-out infinite;
+}
+@keyframes scanSweep {
+  0% { background-position: 0 -45%; }
+  100% { background-position: 0 145%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-aurora,
+  .bg-blob,
+  .scan-stripes,
+  .scan-sweep {
+    animation: none !important;
+  }
+}
+
+/* ---- cursor-reactive spotlight (dynamic background) ---- */
+.bg-spotlight {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    460px circle at var(--mx, 50%) var(--my, 40%),
+    rgba(155, 77, 255, 0.1),
+    rgba(255, 35, 66, 0.05) 42%,
+    transparent 66%
+  );
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-spotlight { display: none; }
+}
+
+/* ---- pointer-reactive glow (whole-site dynamic background) ---- */
+.pointer-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 560px;
+  height: 560px;
+  margin: -280px 0 0 -280px;
+  border-radius: 9999px;
+  background: radial-gradient(closest-side, rgba(255, 90, 114, 0.1), rgba(155, 77, 255, 0.06) 45%, transparent 72%);
+  filter: blur(20px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+/* ---- hero threat-graph polish ---- */
+.graph-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 52%, rgba(7, 7, 8, 0.55) 100%);
+}
+.graph-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: #ff5a72;
+  box-shadow: 0 0 8px #ff2342;
+  animation: pulseDot 1.6s ease-in-out infinite;
+}
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .graph-dot { animation: none; }
+}

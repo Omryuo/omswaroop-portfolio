@@ -1,0 +1,37 @@
+---
+title: "Building an AI-Assisted SOC: Wazuh, TheHive, and an LLM Triage Layer"
+date: "2026-06-25"
+excerpt: "What I learned wiring detection, case management, and an LLM enrichment layer into one pipeline — and where an LLM genuinely helps an analyst versus where it just adds noise."
+tags: ["SOC", "AI", "Wazuh"]
+---
+
+I wanted a SOC I could actually take apart — somewhere an alert flows from detection to a ready-to-work case end to end, and where I could test whether an LLM is useful for first-pass triage or just a demo gimmick. This is what I built and what I'd tell anyone attempting the same.
+
+## The pipeline
+
+The backbone is three open tools, each doing one job well:
+
+- **Wazuh** for detection across endpoints.
+- **OpenSearch** for indexing and search over the event stream.
+- **TheHive** for case management once something is worth investigating.
+
+On top sits a React/Node.js dashboard for real-time visualisation, and an enrichment layer that calls a Groq-hosted LLaMA model. The whole thing is demoable over the public internet through an ngrok tunnel.
+
+## Where the LLM actually helps
+
+The temptation is to ask the model to "decide" if something is malicious. That's the wrong job for it. What works is narrower and more honest: **summarisation and context**.
+
+When an alert fires, the analyst usually faces a wall of raw fields. The LLM turns that into a couple of plain-language sentences — what triggered, on which host, what's unusual — so a human reaches a decision faster. It's an accelerant for the analyst, not a replacement for their judgement.
+
+## Where it hurts
+
+Two failure modes showed up quickly:
+
+1. **Confident wrong summaries.** If the prompt doesn't ground the model in the actual event data, it will happily invent plausible detail. Everything the model says has to be traceable back to fields in the alert.
+2. **Latency and cost at volume.** Summarising every alert doesn't scale. Enrichment belongs on the alerts that survive initial filtering, not the raw firehose.
+
+## What I'd change next
+
+The next iteration is less about the model and more about the plumbing: tighter prompt grounding, a feedback loop so analysts can correct summaries, and detection content that's good enough that the LLM is enriching signal rather than polishing noise. The model is the easy part. The detection engineering underneath it is the real work.
+
+> Based on building the AI-Driven SOC Simulation Platform. Treat the architecture as a starting point, not a production reference.
