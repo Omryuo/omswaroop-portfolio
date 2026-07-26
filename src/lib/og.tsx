@@ -60,7 +60,7 @@ export function OgCard({ eyebrow, title }: { eyebrow: string; title: string }) {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 30, fontWeight: 700 }}>Omswaroop T M</div>
           <div style={{ display: "flex", fontSize: 20, color: "#9a9aa6", marginTop: 6 }}>
-            B.Tech CSE · KPMG Cyber MDR · IEEE-published
+            Cyber MDR Analyst @ KPMG Advisory · B.Tech CSE · IEEE-published
           </div>
         </div>
         <div

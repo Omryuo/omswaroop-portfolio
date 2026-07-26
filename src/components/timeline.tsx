@@ -61,19 +61,34 @@ const milestones: Milestone[] = [
     metrics: [{ label: "Alert Triage", value: "LLM Assisted" }]
   },
   {
-    year: "2026",
-    title: "KPMG Cyber MDR",
-    subtitle: "Cybersecurity Analyst Apprenticeship",
+    year: "Jan–Jun 2026",
+    title: "KPMG Cyber MDR Apprenticeship",
+    subtitle: "Cybersecurity Analyst Apprentice · KPMG Global Services (Advisory)",
     icon: Briefcase,
     accent: "violet",
-    description: "Completed KPMG's managed detection and response program in Bengaluru. Gained experience in SIEM operations, CASB implementation, alert analysis, and threat intelligence.",
+    description: "Completed intensive 6-month managed detection and response (MDR) apprenticeship in Bengaluru, mastering SIEM operations, CASB implementation, alert analysis, and threat intelligence.",
     detailPoints: [
-      "Completed hands-on Splunk SIEM training for log querying and alarm engineering.",
+      "Completed hands-on Splunk SIEM training for log querying, triage, and alarm engineering.",
       "Contributed to enterprise Cloud Access Security Broker (CASB) control implementation.",
       "Conducted analysis on suspicious network headers, DNS requests, and email logs."
     ],
-    tags: ["Splunk SIEM", "CASB Controls", "MDR", "Threat Intelligence", "Incident Response"],
-    metrics: [{ label: "Duration", value: "6 Months" }]
+    tags: ["Splunk SIEM", "CASB Controls", "Threat Intelligence", "Incident Response"],
+    metrics: [{ label: "Status", value: "Completed" }, { label: "Duration", value: "6 Months" }]
+  },
+  {
+    year: "Jul 2026 – Present",
+    title: "Full-Time Conversion → Cyber MDR Analyst",
+    subtitle: "Analyst · KPMG Global Services (Advisory Service Line)",
+    icon: Shield,
+    accent: "crimson",
+    description: "Converted 6-month apprenticeship into a full-time Analyst role within the Advisory service line at KPMG Global Services, operating as a Cyber MDR Analyst driving SOC threat detection and enterprise security operations.",
+    detailPoints: [
+      "Promoted to full-time Cyber MDR Analyst in Advisory following outstanding performance during apprenticeship.",
+      "Executing threat detection engineering, security log monitoring, and incident triage in enterprise environments.",
+      "Driving cloud security controls, SIEM alert rule tuning, and automated response playbooks."
+    ],
+    tags: ["KPMG Global Services", "Advisory", "Cyber MDR Analyst", "Full-Time Role", "SecOps"],
+    metrics: [{ label: "Role", value: "Analyst" }, { label: "Service Line", value: "Advisory" }, { label: "Status", value: "Full-Time" }]
   },
   {
     year: "2026",

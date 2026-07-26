@@ -210,9 +210,21 @@ export const getProject = (slug: string) => projects.find((p) => p.slug === slug
 
 export const experience = [
   {
-    org: "KPMG",
-    role: "Analyst, Cyber — Managed Detection & Response",
-    badge: "Apprenticeship",
+    org: "KPMG Global Services (Advisory)",
+    role: "Analyst — Cyber MDR",
+    badge: "Full-Time Role",
+    period: "Jul 2026 – Present",
+    location: "Bengaluru, India",
+    points: [
+      "Converted 6-month Cyber MDR apprenticeship into a full-time Analyst position within the Advisory service line at KPMG Global Services.",
+      "Execute SOC threat detection, incident triage, and security log monitoring across enterprise client environments.",
+      "Collaborate on detection engineering, SIEM rule tuning, and cloud security architecture.",
+    ],
+  },
+  {
+    org: "KPMG Global Services (Advisory)",
+    role: "Cybersecurity Analyst Apprentice — Cyber MDR",
+    badge: "Apprenticeship (Completed)",
     period: "Jan 2026 – Jun 2026",
     location: "Bengaluru, India",
     points: [

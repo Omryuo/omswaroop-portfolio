@@ -1,11 +1,11 @@
 export const site = {
   name: "Omswaroop T M",
   short: "Om",
-  role: "Cybersecurity & AI/ML Security",
+  role: "Cyber MDR Analyst · KPMG Global Services (Advisory)",
   // TODO: change to your real hosted URL (e.g. https://omswaroop.dev)
   url: "https://omswaroop.vercel.app",
   description:
-    "SOC & Detection Engineering meets AI/ML security research. B.Tech CSE graduate, KPMG Cyber MDR apprentice, IEEE-published author.",
+    "SOC & Detection Engineering meets AI/ML security research. Cyber MDR Analyst in Advisory at KPMG Global Services, B.Tech CSE graduate, IEEE-published author.",
   email: "juug22btech52467@gmail.com",
   phone: "+91 9141017664",
   location: "Bengaluru, India",

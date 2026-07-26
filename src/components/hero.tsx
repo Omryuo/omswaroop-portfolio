@@ -9,9 +9,9 @@ export function Hero() {
       <div className="grid w-full items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
         <Reveal>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[.18em] text-muted">
-            <span>Cybersecurity Engineer</span>
+            <span>Cyber MDR Analyst @ KPMG</span>
             <span className="text-dim">/</span>
-            <span>Detection Engineering</span>
+            <span>Advisory</span>
             <span className="text-dim">/</span>
             <span>AI Security Research</span>
           </div>
@@ -26,8 +26,8 @@ export function Hero() {
 
           <p className="mt-6 max-w-lg text-lg text-muted">
             I work where security operations meet machine-learning research — SIEM-driven
-            detection in a SOC, and published IEEE work on efficient, robust ML. B.Tech CSE
-            graduate, KPMG Cyber MDR apprentice, and IEEE author.
+            detection in a SOC, and published IEEE work on efficient, robust ML. Cyber MDR
+            Analyst in Advisory at KPMG Global Services, B.Tech CSE graduate, and IEEE author.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
